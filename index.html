@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+
+    <script>
+        function checkEmail() {
+            var email = document.getElementById("email").value;
+            var emailMessage = document.getElementById("emailMessage")
+            var re = /^\w+@\w+(\.[a-zA-Z]{2,3}){1,2}$/;
+            if (!re.test(email)) {
+                emailMessage.style.color = "red"
+                emailMessage.innerText = "邮件格式错误";
+                return false;
+            }
+            emailMessage.style.color = "green"
+            emailMessage.innerText = "邮件格式正确";
+            return true;
+        }
+
+        function checkPassword() {
+            var pw = document.getElementById("pw").value;
+            var pwmessage = document.getElementById("pwmessage")
+            var re = /^\w{6,10}/;
+            if (pw.length >= 6) {
+                if (!re.test(pw)) {
+                    pwmessage.style.color = "red"
+                    pwmessage.innerText = "密码格式错误";
+                    return false;
+                }
+                pwmessage.style.color = "green"
+                pwmessage.innerText = "密码格式正确";
+                return true;
+            } else {
+                pwmessage.style.color = "black"
+                pwmessage.innerText = "至少输入6位数字或字母，不能有其他字符";
+                return false;
+            }
+        }
+    </script>
+
+</head>
+<body>
+<form action="#" method="post">
+    <table  align="center">
+        <tr>
+            <td colspan="2" style="text-align: center">注册新用户</td>
+        </tr>
+        <tr>
+            <td align="right">
+                <span>用户名</span>
+                <label id="is_username">*</label>
+            </td>
+            <td>
+                <input type="text" name="username" placeholder="请输入用户名" required="required">
+            </td>
+            <td>
+                <div id="nameMessage"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <span>邮箱</span>
+                <label id="is_email">*</label>
+            </td>
+            <td>
+                <input type="text" id="email" onblur="checkEmail()" name="email" placeholder="请输入邮箱"
+                       required="required">
+            </td>
+            <td>
+                <div id="emailMessage" style="text-align: left">注意邮箱的格式</div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <span>密码</span>
+                <label id="is_password">*</label>
+            </td>
+            <td>
+                <input type="password" id="pw" oninput="checkPassword()"name="password"placeholder="请输入密码"required="required">
+            </td>
+            <td>
+                <div id="pwmessage">至少输入6位数字或字母，不能有其他字符</div>
+            <td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="submit" value="提交">
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
